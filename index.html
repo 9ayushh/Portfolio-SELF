@@ -1,88 +1,318 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Raj | Portfolio</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- RemixIcons for scalable icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // enable dark mode classes manually or based on OS
+            theme: {
+                extend: {
+                    fontFamily: {
+                        merriweather: ['Merriweather', 'serif'],
+                        noto: ['"Noto Sans"', 'sans-serif'],
+                        arial: ['Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#6058e8',
+                            hover: '#4e48cf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
-<body>
-    <div id="page1">
-        <h1 id="text">Hi, I'm Ayush Raj</h1>
+<body class="bg-slate-900 text-slate-300 font-noto overflow-x-hidden selection:bg-brand selection:text-white">
+
+    <!-- Preloader Text Animation Overlay -->
+    <div id="page1" class="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center">
+        <h1 id="text" class="font-merriweather text-4xl md:text-6xl font-black text-slate-100 border-r-4 border-brand whitespace-nowrap overflow-hidden pr-2">Hi, I'm Ayush Raj</h1>
     </div>
 
-    <div id="page2">
-        <nav class="head">
-            <div class="logo">
-                <img src="a" alt="icon">
-            </div>
-            <div class="content">
-                <ul>
-                    <li>About</li>
-                    <li>Skills</li>
-                    <li>Projects</li>
-                    <li>Contact</li>
-                    <li class="mark">Resume</li>
-                </ul>
+    <div id="page2" class="w-full min-h-screen flex flex-col relative">
+        
+        <!-- Sticky Navigation -->
+        <nav class="head fixed top-0 w-full z-[105] transition-all duration-300 backdrop-blur-xl bg-slate-900/80 border-b border-slate-800 shadow-sm px-6 md:px-12 py-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+                <div class="logo flex items-center gap-3 font-merriweather font-bold text-2xl text-brand tracking-tighter cursor-pointer">
+                    <div class="w-10 h-10 bg-brand text-white flex items-center justify-center rounded-xl shadow-[0_0_15px_rgba(96,88,232,0.5)]">AR</div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="content hidden md:block">
+                    <ul class="flex items-center space-x-8 text-sm font-bold tracking-wide text-slate-300">
+                        <li><a href="#about" class="nav-link hover:text-brand transition-colors cursor-pointer py-2">Home</a></li>
+                        <li><a href="#skills" class="nav-link hover:text-brand transition-colors cursor-pointer py-2">Skills</a></li>
+                        <li><a href="#projects" class="nav-link hover:text-brand transition-colors cursor-pointer py-2">Projects</a></li>
+                        <li><a href="#contact" class="nav-link hover:text-brand transition-colors cursor-pointer py-2">Contact</a></li>
+                        <li class="mark bg-brand text-white px-5 py-2.5 rounded-lg shadow-[0_0_15px_rgba(96,88,232,0.4)] hover:bg-brand-hover hover:-translate-y-0.5 transition-all cursor-pointer"><a href="#resume">Resume</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Mobile Menu Toggle Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-brand transition-colors focus:outline-none">
+                        <i class="ri-menu-3-line text-3xl"></i>
+                    </button>
+                </div>
             </div>
         </nav>
-        <main>
-            <div class="main">
-                <div class="left">
-                    <br>
-                    <h1 id="name">Hi, I'm Ayush Raj</h1>
-                    <p class="one">
-                        Graphic Designer & Aspiring Full-Stack Developer | Freelance Front-End Dev| 2nd Year @ GITM, Gurugram
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-[110] bg-slate-950/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-300 hover:text-brand focus:outline-none">
+                <i class="ri-close-line text-4xl"></i>
+            </button>
+            <ul class="flex flex-col space-y-8 text-2xl font-bold tracking-wide text-slate-300 items-center">
+                <li><a href="#about" class="mobile-link hover:text-brand transition-colors">Home</a></li>
+                <li><a href="#skills" class="mobile-link hover:text-brand transition-colors">Skills</a></li>
+                <li><a href="#projects" class="mobile-link hover:text-brand transition-colors">Projects</a></li>
+                <li><a href="#contact" class="mobile-link hover:text-brand transition-colors">Contact</a></li>
+                <li class="bg-brand text-white px-8 py-3 rounded-xl shadow-[0_0_20px_rgba(96,88,232,0.4)]"><a href="#resume" class="mobile-link">Resume</a></li>
+            </ul>
+        </div>
+
+        <!-- Hero Section -->
+        <main id="about" class="main flex-grow flex items-center pt-24 pb-12 overflow-hidden relative">
+            <!-- Decorative Background Blob -->
+            <div class="absolute top-20 right-0 w-96 h-96 bg-brand/10 rounded-full blur-[100px] -z-10 translate-x-1/3"></div>
+            <div class="absolute bottom-10 left-10 w-64 h-64 bg-cyan-600/10 rounded-full blur-[100px] -z-10"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center w-full gap-12 relative z-10">
+                <div class="left md:w-1/2 flex flex-col justify-center">
+                    <h1 id="name" class="font-merriweather font-bold text-4xl md:text-5xl lg:text-7xl text-slate-100 leading-tight mb-6 tracking-tight">Hi, I'm Ayush Raj <span class="text-brand">👋</span></h1>
+                    <p class="one text-lg md:text-xl font-medium text-slate-300 mb-6 border-l-4 border-brand pl-4">
+                        Graphic Designer & Aspiring Full-Stack Developer | Freelance Front-End Dev | 2nd Year @ GITM
                     </p>
-                    <p class="two">
+                    <p class="two text-slate-400 leading-relaxed mb-8 text-lg">
                         I'm a Graphic Designer and aspiring Full-Stack Developer, passionate about blending creativity with technology. Currently in my 2nd year at the Global Institute of Technology and Management, Gurugram, I specialize in front-end development, web design, and photo editing, with hands-on experience as a freelance developer and designer.<br><br>
-                        Skilled in HTML, CSS, JavaScript, GSAP, and animations, I create engaging digital experiences.I strive to bridge design and technology, delivering innovative, user-centric solutions.
+                        Skilled in HTML, CSS, JavaScript, GSAP, and animations, I create engaging digital experiences. I strive to bridge design and technology, delivering innovative, user-centric solutions.
                     </p>
                     
-                    <button class="project">View Project</button>
-                    <button class="contact">Contact Me</button>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="project inline-block bg-brand hover:bg-brand-hover text-white font-semibold px-8 py-3.5 rounded-xl shadow-[0_0_20px_rgba(96,88,232,0.4)] transition-all transform hover:-translate-y-1">View Projects <i class="ri-arrow-right-line ml-1"></i></a>
+                        <a href="#contact" class="contact inline-block bg-transparent text-brand border-2 border-brand hover:bg-brand hover:text-white font-semibold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 text-center shadow-[0_0_15px_transparent] hover:shadow-[0_0_20px_rgba(96,88,232,0.3)]">Contact Me</a>
+                    </div>
                 </div>
-                <div class="right">
-                    <img src="https://public.readdy.ai/ai/img_res/9b5c664228c04c4dc057cc0d03110847.jpg" alt="">
+                <div class="right md:w-1/2 flex justify-center relative">
+                    <!-- Decorative element for image portrait -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand/30 to-cyan-500/20 rounded-full blur-3xl scale-90 -z-10 animate-pulse"></div>
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px]">
+                        <img class="w-full h-full object-cover rounded-full shadow-2xl ring-4 ring-slate-800" src="https://public.readdy.ai/ai/img_res/9b5c664228c04c4dc057cc0d03110847.jpg" alt="Ayush Raj">
+                        <!-- Floating badges representing skills -->
+                        <div class="absolute top-10 right-0 lg:-right-4 bg-slate-800/90 backdrop-blur border border-slate-700 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 animate-bounce flex-col" style="animation-duration: 3s;">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" class="w-6 h-6" alt="Java">
+                            <span class="text-xs font-bold font-noto text-slate-200">Java</span>
+                        </div>
+                        <div class="absolute bottom-10 left-0 lg:-left-10 bg-slate-800/90 backdrop-blur border border-slate-700 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 animate-bounce flex-col" style="animation-duration: 4s; animation-delay: 1s;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" class="w-6 h-6" alt="React">
+                            <span class="text-xs font-bold font-noto text-slate-200">React</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <hr> 
-    
-    <div class="page3">
-        <h1>Technical Skills</h1>
-        <div class="box1">
-            <h3>Frontend Development</h3>
-            <ul>
-                <li>HTML/CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-            </ul>
+    <!-- Technical Skills Section -->
+    <div id="skills" class="page3 max-w-7xl mx-auto px-6 md:px-12 py-24 relative">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+        <div class="text-center mb-16 relative">
+            <h2 class="font-merriweather text-4xl md:text-5xl font-black text-slate-100 mb-4 inline-block tracking-tight">
+                Technical Stack
+            </h2>
+            <div class="w-24 h-1.5 bg-brand mx-auto rounded-full mt-2 shadow-[0_0_10px_rgba(96,88,232,0.6)]"></div>
+            <p class="text-slate-400 mt-6 max-w-2xl mx-auto text-lg">My toolkit organized into functional domains, emphasizing robust backends and dynamic frontends.</p>
         </div>
-        <div class="box2">
-            <h3>Backend Development</h3>
-            <ul>
-                <li>Node.js</li>
-                <li>Python</li>
-                <li>SQL</li>
-            </ul>
-        </div>
-        <div class="box3">
-            <h3>Tools & Technologies</h3>
-            <ul>
-                <li>Git</li>
-                <li>Docker</li>
-                <li>AWS</li>
-            </ul>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Frontend Card -->
+            <div class="skill-box group bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-slate-700 hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300 shadow-sm border border-blue-500/20">
+                    <i class="ri-layout-masonry-line text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-100 mb-6">Frontend</h3>
+                <ul class="space-y-3 text-slate-400 font-medium">
+                    <li class="flex items-center"><i class="ri-html5-fill text-blue-400 mr-3 text-lg"></i> HTML & CSS</li>
+                    <li class="flex items-center"><i class="ri-javascript-fill text-yellow-400 mr-3 text-lg"></i> JavaScript</li>
+                    <li class="flex items-center"><i class="ri-reactjs-fill text-cyan-400 mr-3 text-lg"></i> React.js</li>
+                    <li class="flex items-center"><i class="ri-tailwind-css-fill text-cyan-500 mr-3 text-lg"></i> Tailwind CSS</li>
+                    <li class="flex items-center"><i class="ri-shape-line text-brand mr-3 text-lg"></i> GSAP</li>
+                </ul>
+            </div>
+            
+            <!-- Backend Card -->
+            <div class="skill-box group bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-slate-700 hover:border-red-500/50 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-400 mb-6 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-sm border border-red-500/20">
+                    <i class="ri-server-line text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-100 mb-6">Backend (Java)</h3>
+                <ul class="space-y-3 text-slate-400 font-medium">
+                    <li class="flex items-center"><i class="ri-java-fill text-red-500 mr-3 text-lg"></i> Core Java</li>
+                    <li class="flex items-center"><i class="ri-database-2-line text-slate-300 mr-3 text-lg"></i> JDBC</li>
+                    <li class="flex items-center"><i class="ri-blaze-line text-orange-400 mr-3 text-lg"></i> Servlets & JSP</li>
+                    <li class="flex items-center"><i class="ri-leaf-fill text-green-500 mr-3 text-lg"></i> Hibernate</li>
+                    <li class="flex items-center"><i class="ri-rocket-2-fill text-green-400 mr-3 text-lg"></i> Spring Boot basics</li>
+                </ul>
+            </div>
+
+            <!-- Database Card -->
+            <div class="skill-box group bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-cyan-500/20">
+                    <i class="ri-database-line text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-100 mb-6">Database</h3>
+                <ul class="space-y-3 text-slate-400 font-medium">
+                    <li class="flex items-center"><i class="ri-database-2-fill text-blue-400 mr-3 text-lg"></i> MySQL</li>
+                    <li class="flex items-center"><i class="ri-table-line text-slate-300 mr-3 text-lg"></i> Relational Design</li>
+                    <li class="flex items-center"><i class="ri-code-box-line text-green-400 mr-3 text-lg"></i> Queries & Optimization</li>
+                </ul>
+            </div>
+            
+            <!-- Tools Card -->
+            <div class="skill-box group bg-slate-800/50 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-slate-700 hover:border-purple-500/50 hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300 shadow-sm border border-purple-500/20">
+                    <i class="ri-tools-line text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-100 mb-6">Tools & IDEs</h3>
+                <ul class="space-y-3 text-slate-400 font-medium">
+                    <li class="flex items-center"><i class="ri-git-branch-line text-orange-500 mr-3 text-lg"></i> Git</li>
+                    <li class="flex items-center"><i class="ri-github-fill text-slate-200 mr-3 text-lg"></i> GitHub</li>
+                    <li class="flex items-center"><i class="ri-brackets-line text-blue-500 mr-3 text-lg"></i> VS Code / IntelliJ</li>
+                    <li class="flex items-center"><i class="ri-send-plane-fill text-orange-400 mr-3 text-lg"></i> Postman</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <hr> 
-    
-    
+
+    <!-- Dynamic Projects Section -->
+    <div id="projects" class="bg-slate-950 py-24 relative overflow-hidden">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 project-header">
+                <h2 class="font-merriweather text-4xl md:text-5xl font-black text-slate-100 mb-4 inline-block tracking-tight">
+                    Dynamic Projects
+                </h2>
+                <div class="w-24 h-1.5 bg-brand mx-auto rounded-full mt-2 mb-6 shadow-[0_0_10px_rgba(96,88,232,0.6)]"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">These projects are fetched directly from my GitHub repository via the GitHub API.</p>
+            </div>
+            
+            <!-- This container will be populated by script.js using real GitHub Data -->
+            <div id="github-projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Fallback Loading State -->
+                <div class="col-span-full flex flex-col items-center justify-center text-slate-400 py-12">
+                    <i class="ri-loader-4-line text-4xl animate-spin text-brand mb-4"></i>
+                    <p>Fetching latest projects from GitHub...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="max-w-7xl mx-auto px-6 md:px-12 py-24 contact-container relative">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+        <div class="bg-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl relative border border-slate-700">
+            <!-- Decorative atmospheric circles -->
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand rounded-full blur-[100px] opacity-20"></div>
+            <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-cyan-500 rounded-full blur-[100px] opacity-10"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 relative z-10">
+                <div class="lg:col-span-2 p-10 md:p-16 flex flex-col justify-center">
+                    <h2 class="font-merriweather text-4xl md:text-5xl font-bold text-slate-100 mb-6">Let's build<br>something<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-brand">amazing.</span></h2>
+                    <p class="text-slate-400 text-lg mb-12">I'm currently available for freelance work or full-time roles. Drop a message here and I'll get back to you immediately.</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-brand border border-slate-700 group-hover:bg-brand group-hover:text-white transition-colors">
+                                <i class="ri-mail-send-line text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-500 text-sm tracking-wider uppercase font-bold mb-1">Email</p>
+                                <a href="mailto:9ayushraj@gmail.com" class="text-slate-200 text-lg hover:text-brand transition-colors">9ayushraj@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-cyan-400 border border-slate-700 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                                <i class="ri-map-pin-line text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-500 text-sm tracking-wider uppercase font-bold mb-1">Location</p>
+                                <p class="text-slate-200 text-lg">Gurugram, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3 p-10 md:p-16 lg:pl-10 bg-slate-900/50 backdrop-blur-xl border-t lg:border-t-0 lg:border-l border-slate-700">
+                    <form id="contactForm" class="space-y-6" novalidate>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-slate-400 text-sm font-bold tracking-wide uppercase mb-2" for="contact-name">Your Name <span class="text-red-400">*</span></label>
+                                <input class="w-full bg-slate-950/50 border border-slate-700 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all placeholder-slate-600" type="text" id="contact-name" required placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 text-sm font-bold tracking-wide uppercase mb-2" for="email">Email Address <span class="text-red-400">*</span></label>
+                                <input class="w-full bg-slate-950/50 border border-slate-700 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all placeholder-slate-600" type="email" id="email" required placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 text-sm font-bold tracking-wide uppercase mb-2" for="message">Message <span class="text-red-400">*</span></label>
+                            <textarea class="w-full bg-slate-950/50 border border-slate-700 rounded-2xl px-5 py-4 text-slate-100 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all h-36 resize-none placeholder-slate-600" id="message" required placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        
+                        <!-- Success/Error Message Container -->
+                        <div id="form-feedback" class="hidden text-sm px-4 py-3 rounded-lg mt-2 font-medium"></div>
+                        
+                        <button class="w-full md:w-auto bg-brand hover:bg-brand-hover text-white font-bold text-lg px-10 py-4 rounded-2xl shadow-[0_10px_20px_rgba(96,88,232,0.3)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 border border-brand/50" type="submit">
+                            Send Message <i class="ri-send-plane-fill"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand text-white flex items-center justify-center rounded-lg shadow-md font-merriweather font-bold text-sm">AR</div>
+                <span class="font-medium text-slate-200">Ayush Raj</span>
+            </div>
+            
+            <p class="text-sm">© 2024 Ayush Raj. Crafted with logic & design.</p>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                    <i class="ri-linkedin-fill text-lg"></i>
+                </a>
+                <a href="https://github.com/ayushraj" target="_blank" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                    <i class="ri-github-fill text-lg"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                    <i class="ri-twitter-x-line text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <script src="script.js"></script>
