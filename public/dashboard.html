@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Staff Portal - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Extra styles specific to the dashboard */
+        body {
+            background-color: #f3f4f6;
+            /* Lighter background for dashboard */
+            align-items: flex-start;
+            /* Do not center dashboard content vertically */
+            padding-top: 2rem;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .dashboard-header {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-soft);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--primary-color);
+        }
+
+        .header-title h1 {
+            color: var(--text-main);
+            font-size: 1.75rem;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .dashboard-content {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-soft);
+        }
+
+        .dashboard-content h2 {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .dashboard-content p {
+            color: #4b5563;
+        }
+
+        .btn-logout {
+            background-color: #ef4444;
+            /* Red color for log out */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-logout:hover {
+            background-color: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <h1>Staff Dashboard</h1>
+            </div>
+
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <h2 id="welcomeText">Welcome to the secure staff portal.</h2>
+            <p>You have successfully logged in. Your assigned duties are below:</p>
+            
+            <div id="allocationBox" style="margin-top: 2rem; padding: 1.5rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; text-align: left; display: inline-block; min-width: 300px;">
+                <p style="margin-bottom: 0.5rem; color: #64748b; font-size: 0.9rem; font-weight: 600; text-transform: uppercase;">Current Assignments</p>
+                <div id="allocationsContainer" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Multiple allocations rendered here -->
+                </div>
+            </div>
+            
+            <br><br>
+            <p><strong>Note:</strong> Since this is a template, further clinical modules and features would be added
+                here.</p>
+        </main>
+    </div>
+
+    <script>
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Fetch staff profile data
+        async function loadProfile() {
+            try {
+                const response = await fetch('/api/staff/me');
+                if (response.ok) {
+                    const resData = await response.json();
+                    if (resData.success) {
+                        const data = resData.data;
+                        document.getElementById('welcomeText').textContent = `Welcome, ${data.name}`;
+                        
+                        const container = document.getElementById('allocationsContainer');
+                        if (!data.allocations || data.allocations.length === 0) {
+                            container.innerHTML = '<span style="color:#ef4444; font-weight:500;">Currently Unassigned</span>';
+                        } else {
+                            container.innerHTML = data.allocations.map(a => `
+                                <div style="padding: 0.5rem; background-color: white; border: 1px solid #e2e8f0; border-radius: 4px; border-left: 4px solid var(--primary-color);">
+                                    <strong>Ward:</strong> ${a.ward_number} &nbsp;|&nbsp; <strong>Bed:</strong> ${a.bed_number}
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load profile data', error);
+            }
+        }
+
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                // Post request to backend logout route
+                const response = await fetch('/api/logout', {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    window.location.href = data.redirect;
+                }
+            } catch (error) {
+                alert('Error logging out. Please try again.');
+            }
+        });
+        
+        loadProfile();
+    </script>
+</body>
+
+</html>
