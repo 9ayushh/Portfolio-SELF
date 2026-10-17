@@ -1,3 +1,7 @@
+// Always start from the top on refresh — disable browser scroll restoration
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 gsap.registerPlugin(ScrollTrigger);
 
 // -----------------------------------------------------------------
@@ -248,45 +252,70 @@ fetchGitHubProjects();
 
 
 // -----------------------------------------------------------------
-// 6. Contact Form Validation and Simple MailTo
+// 6. Contact Form — EmailJS Integration
 // -----------------------------------------------------------------
-const contactForm = document.getElementById('contactForm');
-const formFeedback = document.getElementById('form-feedback');
+
+// ⚠️  REPLACE these three values with your own from https://www.emailjs.com/
+const EMAILJS_PUBLIC_KEY  = 'B-dLY0IfmCZ9q8f2b';   // Account > API Keys
+const EMAILJS_SERVICE_ID  = 'service_ba3qybg';   // Email Services tab
+const EMAILJS_TEMPLATE_ID = 'template_92raidm';  // Email Templates tab
+
+// Initialise EmailJS with your public key
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+const contactForm   = document.getElementById('contactForm');
+const formFeedback  = document.getElementById('form-feedback');
+const submitBtn     = contactForm.querySelector('button[type="submit"]');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const nameInput = document.getElementById('contact-name').value.trim();
-    const emailInput = document.getElementById('email').value.trim();
-    const messageInput = document.getElementById('message').value.trim();
-    
-    // JS Validation
-    if(!nameInput || !emailInput || !messageInput) {
-        formFeedback.className = 'bg-red-500/20 text-red-200 text-sm px-4 py-3 rounded-lg mt-2 font-medium block border border-red-500/30';
-        formFeedback.textContent = 'Please fill out all required fields appropriately.';
-        return;
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(emailInput)) {
-        formFeedback.className = 'bg-red-500/20 text-red-200 text-sm px-4 py-3 rounded-lg mt-2 font-medium block border border-red-500/30';
-        formFeedback.textContent = 'Please enter a valid email address.';
-        return;
-    }
-    
-    // Option 1: Mock Success & MailTo Link Trigger
-    formFeedback.className = 'bg-green-500/20 text-green-200 text-sm px-4 py-3 rounded-lg mt-2 font-medium block border border-green-500/30';
-    formFeedback.textContent = 'Validation passed! Opening your default email client...';
-    
-    // Open explicit mailto
-    const mailtoURL = `mailto:9ayushraj@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(nameInput)}&body=${encodeURIComponent(messageInput + '\n\nSender Email: ' + emailInput)}`;
-    window.location.href = mailtoURL;
 
-    // Reset Form
-    contactForm.reset();
-    
-    // Clear feedback after 5 seconds
-    setTimeout(() => {
-        formFeedback.classList.add('hidden');
-    }, 5000);
+    const nameVal    = document.getElementById('contact-name').value.trim();
+    const emailVal   = document.getElementById('email').value.trim();
+    const messageVal = document.getElementById('message').value.trim();
+
+    // --- Client-side validation ---
+    if (!nameVal || !emailVal || !messageVal) {
+        showFeedback('error', 'Please fill out all required fields.');
+        return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailVal)) {
+        showFeedback('error', 'Please enter a valid email address.');
+        return;
+    }
+
+    // --- Loading state ---
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> Sending...';
+
+    // --- Send via EmailJS ---
+    // The template variables below (from_name, from_email, message) must match
+    // the variable names you set inside your EmailJS template.
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name:  nameVal,
+        from_email: emailVal,
+        message:    messageVal,
+        to_email:   '9ayushraj@gmail.com'
+    })
+    .then(() => {
+        showFeedback('success', '✅ Message sent! I\'ll get back to you soon.');
+        contactForm.reset();
+    })
+    .catch((err) => {
+        console.error('EmailJS error:', err);
+        showFeedback('error', '❌ Something went wrong. Please try again or email me directly.');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message <i class="ri-send-plane-fill"></i>';
+    });
 });
+
+function showFeedback(type, msg) {
+    formFeedback.className = type === 'success'
+        ? 'bg-green-500/20 text-green-200 text-sm px-4 py-3 rounded-lg mt-2 font-medium block border border-green-500/30'
+        : 'bg-red-500/20 text-red-200 text-sm px-4 py-3 rounded-lg mt-2 font-medium block border border-red-500/30';
+    formFeedback.textContent = msg;
+    setTimeout(() => formFeedback.classList.add('hidden'), 6000);
+}

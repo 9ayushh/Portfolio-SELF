@@ -164,7 +164,7 @@
                     <li class="flex items-center"><i class="ri-database-2-line text-slate-300 mr-3 text-lg"></i> JDBC</li>
                     <li class="flex items-center"><i class="ri-blaze-line text-orange-400 mr-3 text-lg"></i> Servlets & JSP</li>
                     <li class="flex items-center"><i class="ri-leaf-fill text-green-500 mr-3 text-lg"></i> Hibernate</li>
-                    <li class="flex items-center"><i class="ri-rocket-2-fill text-green-400 mr-3 text-lg"></i> Spring Boot basics</li>
+                    <li class="flex items-center"><i class="ri-rocket-2-fill text-green-400 mr-3 text-lg"></i> Spring Boot</li>
                 </ul>
             </div>
 
@@ -178,6 +178,7 @@
                     <li class="flex items-center"><i class="ri-database-2-fill text-blue-400 mr-3 text-lg"></i> MySQL</li>
                     <li class="flex items-center"><i class="ri-table-line text-slate-300 mr-3 text-lg"></i> Relational Design</li>
                     <li class="flex items-center"><i class="ri-code-box-line text-green-400 mr-3 text-lg"></i> Queries & Optimization</li>
+                    <li class="flex items-center"><i class="ri-database-2-fill text-blue-300 mr-3 text-lg"></i> PostgreSQL</li>
                 </ul>
             </div>
             
@@ -192,33 +193,144 @@
                     <li class="flex items-center"><i class="ri-github-fill text-slate-200 mr-3 text-lg"></i> GitHub</li>
                     <li class="flex items-center"><i class="ri-brackets-line text-blue-500 mr-3 text-lg"></i> VS Code / IntelliJ</li>
                     <li class="flex items-center"><i class="ri-send-plane-fill text-orange-400 mr-3 text-lg"></i> Postman</li>
+                    <li class="flex items-center"><i class="ri-task-line text-blue-400 mr-3 text-lg"></i> Jira</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Dynamic Projects Section -->
+    <!-- Static Projects Section -->
     <div id="projects" class="bg-slate-950 py-24 relative overflow-hidden">
         <!-- Decorative blobs -->
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
         <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[100px] -z-10 -translate-x-1/3 translate-y-1/3"></div>
         
         <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <div class="text-center mb-16 project-header">
+            <div class="text-center mb-16">
                 <h2 class="font-merriweather text-4xl md:text-5xl font-black text-slate-100 mb-4 inline-block tracking-tight">
-                    Dynamic Projects
+                    My Projects
                 </h2>
                 <div class="w-24 h-1.5 bg-brand mx-auto rounded-full mt-2 mb-6 shadow-[0_0_10px_rgba(96,88,232,0.6)]"></div>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg">These projects are fetched directly from my GitHub repository via the GitHub API.</p>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">A curated collection of projects showcasing my skills across different technologies and domains.</p>
             </div>
             
-            <!-- This container will be populated by script.js using real GitHub Data -->
-            <div id="github-projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Fallback Loading State -->
-                <div class="col-span-full flex flex-col items-center justify-center text-slate-400 py-12">
-                    <i class="ri-loader-4-line text-4xl animate-spin text-brand mb-4"></i>
-                    <p>Fetching latest projects from GitHub...</p>
+            <!-- Static Project Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Java SpringBoot CRM -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-brand/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-400 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-briefcase-4-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">Java · Spring Boot</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-brand transition-colors">Spring Boot CRM App</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A full-featured Customer Relationship Management application built with Java and Spring Boot, designed for efficient customer data management.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/BridzzGap" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-brand transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Project 2: 30 Days 30 Projects -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-yellow-500/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-400 border border-yellow-500/20 group-hover:bg-yellow-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-code-s-slash-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-3 py-1 rounded-full">HTML · CSS · JS</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-yellow-400 transition-colors">30 Days – 30 Projects</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A challenge-based series of 30 mini web projects built purely with HTML, CSS, and JavaScript — covering animations, APIs, games, and UI components.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/30-Days-30-Projects" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-yellow-400 transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: React E-commerce -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-cyan-500/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center text-cyan-400 border border-cyan-500/20 group-hover:bg-cyan-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-shopping-cart-2-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">React</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-cyan-400 transition-colors">E-Commerce Website</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A modern e-commerce web application built with React, featuring product listings, cart functionality, and a responsive shopping experience.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/react" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-cyan-400 transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Mini Java Compiler -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-orange-500/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-orange-500/10 rounded-2xl flex items-center justify-center text-orange-400 border border-orange-500/20 group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-terminal-box-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-full">Java</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-orange-400 transition-colors">Mini Java Compiler</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A lightweight Java compiler project that demonstrates lexical analysis, parsing, and code interpretation — a dive into the internals of programming languages.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/JavaCompilerProject" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-orange-400 transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Employee Management System -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-green-500/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-400 border border-green-500/20 group-hover:bg-green-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-team-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-400 bg-green-500/10 border border-green-500/20 px-3 py-1 rounded-full">Java · MySQL</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-green-400 transition-colors">Employee Management System</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A complete employee management solution with CRUD operations, department management, and database integration using Java and MySQL.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/EmployeeManagement" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-green-400 transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Advice App -->
+                <div class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-3xl p-7 flex flex-col gap-4 hover:border-purple-500/60 hover:bg-slate-800 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-400 border border-purple-500/20 group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300">
+                            <i class="ri-lightbulb-flash-line text-xl"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full">HTML · CSS · JS</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-purple-400 transition-colors">Advice App</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A fun and interactive advice generator app that fetches random advice via an API — clean UI, smooth animations, and instant motivation on demand.</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-slate-700/60">
+                        <a href="https://github.com/9ayushh/advice-app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-purple-400 transition-colors">
+                            <i class="ri-github-fill text-lg"></i> View on GitHub <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -298,18 +410,21 @@
             <p class="text-sm">© 2024 Ayush Raj. Crafted with logic & design.</p>
             
             <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                <a href="https://www.linkedin.com/in/ayush-raj-85659b342" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
                     <i class="ri-linkedin-fill text-lg"></i>
                 </a>
-                <a href="https://github.com/ayushraj" target="_blank" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                <a href="https://github.com/9ayushh" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
                     <i class="ri-github-fill text-lg"></i>
                 </a>
-                <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
-                    <i class="ri-twitter-x-line text-lg"></i>
+                <a href="https://mail.google.com/mail/?view=cm&to=9ayushraj@gmail.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-800 hover:bg-brand text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all border border-slate-700">
+                    <i class="ri-mail-line text-lg"></i>
                 </a>
             </div>
         </div>
     </footer>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- GSAP Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
